@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: vsphere-csi-controller-prometheus-servicemonitor
+  namespace: monitoring
+  labels:
+    name: vsphere-csi-controller-prometheus-servicemonitor
+spec:
+  selector:
+    matchLabels:
+      app: vsphere-csi-controller
+  namespaceSelector:
+    matchNames:
+    - vmware-system-csi
+  endpoints:
+  - port: ctlr
+  - port: syncer
